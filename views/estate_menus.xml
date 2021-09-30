@@ -1,0 +1,7 @@
+<odoo>
+    <menuitem name="Estate" id="estate_menu_root" />
+    <menuitem name="Estate Menus" id="estate_menu" parent="estate_menu_root" sequence="1"/>
+    <menuitem name="Estate Action" id="estate_action" parent="estate_menu" action="view_property_model_action" sequence="1"/>
+    <menuitem name="Property Type Action" id="property_type_action" parent="estate_menu" action="property_type_model_action" sequence="1"/>
+    <menuitem name="Property Tag Action" id="property_tag_action" parent="estate_menu" action="estate_property_tag_model_action" sequence="1"/>
+</odoo>

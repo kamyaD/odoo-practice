@@ -1,0 +1,123 @@
+<odoo>
+<record id="view_property_tree" model="ir.ui.view">
+    <field name="name">estate.property.tree</field>
+    <field name="model">estate.estate.property</field>
+    <field name="arch" type="xml">
+        <tree>
+           <field name="name"/>
+           <field name="date_available"/>
+           <field name="description"/>
+           <field name="garden_orientation"/>
+           <field name="tags_id" widget="many2many_tags"/>
+        </tree>
+    </field>
+</record>
+<record id="view_property_search" model="ir.ui.view">
+    <field name="name">estate.property.search</field>
+    <field name="model">estate.estate.property</field>
+    <field name="arch" type="xml">
+    <search>
+        <field name="name"/>
+        <field name="description"/>
+        <field string="Garden orientation" name="garden_orientation"/>
+        <separator/>
+        <filter string="North" name="north" domain="[('garden_orientation','=', True)]" />
+        <group expand="1" string="Group By">
+            <filter string="Garden orientation" name="garden_orientation" context="{'group': 'garden_orientation'}" />
+            <filter string="Name" name="name" context="{'group': 'name'}" />
+        </group>
+    </search>
+    </field>
+</record>
+    <record id="view_property_kanban_view" model="ir.ui.view">
+      <field name="name">estate.property.kanban</field>
+      <field name="model">estate.estate.property</field>
+      <field name="arch" type="xml">
+        <kanban>
+            <field name="name"/>
+            <field name="description"/>
+            <field name="postcode"/>
+            <field name="date_available"/>
+            <field name="property_type_id" string="Property Type"/>
+            <field name="buyer_id" string="Buyer"/>
+            <field name="user_id" string="User"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_global_click">
+                <div class="o_kanban_image">
+                  <!--<img alt="Avatar" />-->
+                </div>
+                <div class="oe_kanban_details">
+                    <ul>
+                        <li>
+                            Name:<field name="name"/>
+                        </li>
+                        <li>
+                            Description:<field name="description"/>
+                        </li>
+                        <li>
+                            Post code:<field name="postcode"/>
+                        </li>
+
+                    </ul>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+<record id="view_property_form" model="ir.ui.view">
+    <field name="name">estate.property.form</field>
+    <field name="model">estate.estate.property</field>
+    <field name="arch" type="xml">
+        <form>
+        <sheet>
+            <h1><field name="name"/></h1>
+            <field name="tags_id" widget="many2many_tags"/>
+        <group>
+            <group> 
+            <field name="property_type_id" string="Property Type"/>
+            <field name="postcode"/>
+            <field name="date_available"/>
+            <field name="selling_price"/>
+            <field name="description"/>
+            <field name="buyer_id" string="Buyer"/>
+            <field name="user_id" string="User"/>
+            </group>
+            <group>
+            <field name="expected_price"/>
+            <field name="bedrooms"/>
+            <field name="living_area"/>
+            <field string="Garden orientation" name="garden_orientation"/>
+            </group>
+
+        </group>
+        <notebook>
+                <page string="Other Info">
+                <group>
+                    <field name="buyer_id" string="Buyer"/>
+                </group>
+                <group>
+                    <field name="user_id" string="User"/>
+                </group>
+                </page>
+                <page string="Other Info">
+                <group>
+                    <field name="buyer_id" string="Buyer"/>
+                </group>
+                <group>
+                    <field name="user_id" string="User"/>
+                </group>
+                </page>
+            </notebook>
+        </sheet>
+        </form>
+    </field>
+</record>
+<record id="view_property_model_action" model="ir.actions.act_window">
+    <field name="name">Estate property action</field>
+    <field name="res_model">estate.estate.property</field>
+    <field name="view_mode">tree,kanban,form</field>
+</record>
+</odoo>
